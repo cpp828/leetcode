@@ -1,0 +1,16 @@
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        hashes={}
+        left,right,lenth=0,0,len(s)
+        maxlen=0
+        while right<lenth:
+            if hashes.get(s[right]) and hashes[s[right]]>=left:
+                left=hashes[s[right]]
+            hashes[s[right]]=right+1
+            maxlen=max(maxlen,right-left+1)
+            right+=1
+        return maxlen
